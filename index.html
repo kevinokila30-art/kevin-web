@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kepada Adek Kesayangan Zeani Yurindah🤍</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background: #fff0f5;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+    .container {
+      padding: 30px;
+    }
+    h1 {
+      color: #d63384;
+    }
+    .message {
+      font-size: 1.2em;
+      color: #444;
+      margin: 20px auto;
+      max-width: 600px;
+      line-height: 1.6;
+    }
+    .photo {
+      max-width: 90%;
+      height: auto;
+      border-radius: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      margin: 20px 0;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+    .photo:hover {
+      transform: scale(1.05);
+    }
+    .hearts {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      overflow: hidden;
+      top: 0;
+      left: 0;
+    }
+    .heart {
+      position: absolute;
+      color: #ff4d6d;
+      font-size: 24px;
+      animation: float 6s infinite;
+    }
+    @keyframes float {
+      0% { transform: translateY(100vh) scale(1); opacity: 1; }
+      100% { transform: translateY(-10vh) scale(1.5); opacity: 0; }
+    }
+    #musicBtn {
+      background: #ff4d6d;
+      border: none;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 30px;
+      cursor: pointer;
+      font-size: 1em;
+      margin-top: 20px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+    /* Lightbox */
+    #lightbox {
+      display: none;
+      position: fixed;
+      top:0; left:0; right:0; bottom:0;
+      background: rgba(0,0,0,0.8);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+    #lightbox img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Kepada Adek Sayang 💖</h1>
+    <img src="zeani.jpg" alt="Foto manis Zeani Yurindah" class="photo" id="mainPhoto" />
+    <p class="message">
+      Kepada Zeani Yurindah yang cantik, manis, imut, lucu, dan menggemaskan.<br>
+      Selamat merayakan tanggal 24 yang kesekian kalinya bersama Abang, semoga kedepannya kita menjadi pribadi yang lebih baik lagi. I Love You adek sayang🤍🫶🏼
+    </p>
+    <button id="musicBtn">▶ Putar Musik</button>
+    <audio id="mp3" preload="none">
+      <source src="NIKI.mp3" type="audio/mpeg" />
+    </audio>
+  </div>
+
+  <div class="hearts"></div>
+
+  <!-- Lightbox -->
+  <div id="lightbox"><img src="" alt="lightbox"></div>
+
+  <script>
+    // Hati animasi
+    const hearts = document.querySelector('.hearts');
+    setInterval(() => {
+      const heart = document.createElement('div');
+      heart.className = 'heart';
+      heart.innerHTML = '❤️';
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.fontSize = (Math.random() * 20 + 20) + 'px';
+      hearts.appendChild(heart);
+      setTimeout(() => heart.remove(), 6000);
+    }, 800);
+
+    // Musik
+    const audio = document.getElementById('mp3');
+    const btn = document.getElementById('musicBtn');
+    let playing = false;
+    btn.onclick = () => {
+      if (playing) {
+        audio.pause();
+        btn.textContent = '▶ Putar Musik';
+      } else {
+        audio.play();
+        btn.textContent = '⏸ Jeda Musik';
+      }
+      playing = !playing;
+    };
+
+    // Lightbox
+    const photo = document.getElementById('mainPhoto');
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = lightbox.querySelector('img');
+    photo.addEventListener('click', () => {
+      lightbox.style.display = 'flex';
+      lightboxImg.src = photo.src;
+    });
+    lightbox.addEventListener('click', () => {
+      lightbox.style.display = 'none';
+    });
+  </script>
+</body>
+</html>
